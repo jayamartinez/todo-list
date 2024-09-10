@@ -2,15 +2,15 @@
   "name": "todo-list",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://jayamartinez.github.io/todo-list/",
+  "homepage": "https://jayamartinez.github.io/todo-list",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.3.1",
