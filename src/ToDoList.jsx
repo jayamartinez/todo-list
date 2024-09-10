@@ -8,43 +8,25 @@ function ToDoList() {
         document.getElementById("taskInput").value = "";
         setTasks(t => [...t, newTask]);
         console.log(tasks);
-
-        const taskWrapper = document.createElement('div');
-        taskWrapper.classList.add("item")
-        
-        const item = document.createElement("h2");
-        item.textContent = newTask;
-        
-        const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Delete"
-        deleteBtn.id = "delete-btn"
-
-        const upBtn = document.createElement("button");
-        upBtn.textContent = "👆"
-        upBtn.id = "up-btn"
-
-        const downBtn = document.createElement("button")
-        downBtn.textContent = "👇"
-        downBtn.id = "down-btn"
-
-        taskWrapper.appendChild(item)
-        taskWrapper.appendChild(deleteBtn)
-        taskWrapper.appendChild(upBtn)
-        taskWrapper.appendChild(downBtn)
-
-        const itemList = document.querySelector(".item-list")
-        itemList.appendChild(taskWrapper)
-
     }
 
     function handleRemoveTask(index) {
         setTasks(tasks.filter((_, i) => i !== index))
     }
 
-    function handleMoveTask(index) {
-
+    function handleMoveTaskUp(index) {
+        if(index === 0) return;
+        const newTasks = [...tasks];
+        [newTasks[index - 1], newTasks[index]] = [newTasks[index], newTasks[index - 1]]
+        setTasks(newTasks)
     }
 
+    function handleMoveTaskDown(index) {
+        if(index === tasks.length - 1) return
+        const newTasks = [...tasks];
+        [newTasks[index + 1], newTasks[index]] = [newTasks[index], newTasks[index + 1]]
+        setTasks(newTasks)
+    }
     
     return(
         <>
@@ -54,20 +36,33 @@ function ToDoList() {
                 <button onClick={handleAddTask}>Add Task</button>
             </div>
             <div className='item-list'>
-                <div className="item">
+                {
+                    tasks.map((task, index) => {
+                        <div className="item" key={index}>
+                            <button onClick={() => handleRemoveTask}>✏️</button>
+                            <h2>{task}</h2>
+                            <button onClick={() => handleRemoveTask}>Delete</button>
+                            <button onClick={() => handleMoveTaskUp(index)}>👆</button>
+                            <button onClick={() => handleMoveTaskDown(index)}>👇</button>
+                        </div>
+                    }) 
+                }
+                
+                {/* <div className="item">
+                    <button onClick={() => handleRemoveTask}>✏️</button>
                     <h2>{tasks}</h2>
-                    <button>Delete</button>
+                    <button onClick={() => handleRemoveTask}>Delete</button>
                     <button>👆</button>
                     <button>👇</button>
                 </div>
 
                 <div className="item">
+                    <button onClick={() => handleRemoveTask}>✏️</button>
                     <h2>Do some react coding</h2>
-                    <button>Delete</button>
+                    <button onClick={() => handleRemoveTask}>Delete</button>
                     <button>👆</button>
                     <button>👇</button>
-                </div>
-
+                </div> */}
             </div>
         </>
     )
