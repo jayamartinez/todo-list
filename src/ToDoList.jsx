@@ -6,17 +6,16 @@ function ToDoList() {
         return savedTasks ? JSON.parse(savedTasks) : [];
     });
 
+    const [taskInput, setTaskInput] = useState("");
+
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks))
     }, [tasks])
     
     function handleAddTask() {
-        // console.log("working");
-        const newTask = document.getElementById("taskInput").value;
-
-        if(newTask.trim() !== "") {
-            document.getElementById("taskInput").value = "";
-            setTasks(t => [...t, newTask]);
+        if(taskInput.trim() !== "") {
+            setTasks(t => [...t, taskInput]);
+            setTaskInput("")
             // console.log(tasks);
         }
     }
@@ -46,11 +45,15 @@ function ToDoList() {
         <>
             <h1 style={{textAlign: "center"}}>To-Do List</h1>
             <div className='todo-form'>
-                <input id="taskInput" type="text" placeholder='Enter task' onKeyDown={(event) => {
-                    if(event.key === "Enter") {
-                        console.log("Enter key pressed")
-                        handleAddTask()
-                    }
+                <input  id="taskInput" 
+                        type="text" 
+                        placeholder='Enter task'
+                        value={taskInput} 
+                        onKeyDown={(event) => {
+                            if(event.key === "Enter") {
+                                console.log("Enter key pressed")
+                                handleAddTask()
+                            }
                 }}/>
                 <button onClick={handleAddTask}>Add Task</button>
             </div>
