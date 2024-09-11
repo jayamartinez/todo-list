@@ -48,7 +48,8 @@ function ToDoList() {
                 <input  id="taskInput" 
                         type="text" 
                         placeholder='Enter task'
-                        value={taskInput} 
+                        value={taskInput}
+                        onChange={(event) => setTaskInput(event.target.value)}
                         onKeyDown={(event) => {
                             if(event.key === "Enter") {
                                 console.log("Enter key pressed")
