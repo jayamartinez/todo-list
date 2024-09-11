@@ -11,7 +11,7 @@ function ToDoList() {
     }, [tasks])
     
     function handleAddTask() {
-        console.log("working");
+        // console.log("working");
         const newTask = document.getElementById("taskInput").value;
 
         if(newTask.trim() !== "") {
@@ -22,7 +22,7 @@ function ToDoList() {
     }
 
     function handleRemoveTask(index) {
-        console.log("working");
+        // console.log("working");
         
         setTasks(tasks.filter((_, i) => i !== index))
     }
