@@ -126,3 +126,18 @@ button:focus-visible {
 .item button {
   margin-left: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .item-list {
+      padding: 20px;
+  }
+  .item {
+      width:45%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .item {
+      width:100%;
+  }
+}

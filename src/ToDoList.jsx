@@ -17,7 +17,7 @@ function ToDoList() {
         if(newTask.trim() !== "") {
             document.getElementById("taskInput").value = "";
             setTasks(t => [...t, newTask]);
-            console.log(tasks);
+            // console.log(tasks);
         }
     }
 
@@ -46,7 +46,12 @@ function ToDoList() {
         <>
             <h1 style={{textAlign: "center"}}>To-Do List</h1>
             <div className='todo-form'>
-                <input id="taskInput" type="text" placeholder='Enter task'/>
+                <input id="taskInput" type="text" placeholder='Enter task' onKeyDown={(event) => {
+                    if(event.key === "Enter") {
+                        console.log("Enter key pressed")
+                        handleAddTask()
+                    }
+                }}/>
                 <button onClick={handleAddTask}>Add Task</button>
             </div>
             <div className='item-list'>
